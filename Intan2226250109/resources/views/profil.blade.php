@@ -1,1 +1,1 @@
-<h1>Hello, Nama Saya Intan Sanu</h1>
+<h2>Halo Nama Saya Intan Sanu</h2>

@@ -16,6 +16,6 @@
         </style>
     </head>
     <body class="antialiased">
-            <h1>IntanSanu</h1>
+        <h1>Intan Sanu</h1>
     </body>
 </html>
