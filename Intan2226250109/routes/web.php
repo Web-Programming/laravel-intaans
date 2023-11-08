@@ -27,14 +27,14 @@ Route::get('/profil', function () {
 });
 
 //route dengan parameter {wajib}
-Route::get('/mahasiswa/{nama}', function ($nama = "Intan") {
-    echo "<h2>Halo Nama Saya $nama</h2>";
-});
+// Route::get('/mahasiswa/{nama}', function ($nama = "Intan") {
+//     echo "<h2>Halo Nama Saya $nama</h2>";
+// });
 
-//route dengan parameter {tidak wajib}
-Route::get('/mahasiswa2/{nama?}', function ($nama = "Intan") {
-    echo "<h2>Halo Nama Saya $nama</h2>";
-});
+// //route dengan parameter {tidak wajib}
+// Route::get('/mahasiswa2/{nama?}', function ($nama = "Intan") {
+//     echo "<h2>Halo Nama Saya $nama</h2>";
+// });
 
 //route dengan parameter > 1
 Route::get('/profil/{nama?}/{pekerjaan?}', function ($nama = "Intan", $pekerjaan = "Mahasiswa") {
@@ -42,27 +42,27 @@ Route::get('/profil/{nama?}/{pekerjaan?}', function ($nama = "Intan", $pekerjaan
 });
 
 //Redirect dan Named Route
-Route::get("/hubungi", function (){
+Route::get("/hubungi", function () {
     echo "<h1>Hubungi Kami<h1>";
-})->name("call");  //named route
+})->name("call"); //named route
 
 Route::redirect("/contact", "/hubungi");
 
 Route::get('/halo', function () {
-    echo "<a href = '". route('call') . "'>" . route('call'). "</a>";
+    echo "<a href = '" . route('call') . "'>" . route('call') . "</a>";
 });
 
 //Route Group
 
-Route::prefix("/dosen")->group(function(){
+Route::prefix("/dosen")->group(function () {
 
-Route::get('/jadwal', function () {
-    echo "<h2>Jadwal Dosen</h2>";
-});
-Route::get('/materi', function () {
-    echo "<h2>Materi Perkuliahan</h2>";
-});
-//dan lain lain
+    Route::get('/jadwal', function () {
+        echo "<h2>Jadwal Dosen</h2>";
+    });
+    Route::get('/materi', function () {
+        echo "<h2>Materi Perkuliahan</h2>";
+    });
+    //dan lain lain
 });
 
 Route::get('/dosen', function () {
@@ -81,10 +81,12 @@ Route::get('/fakultas', function () {
     // return view('fakultas.index')-> with("fakultas", ["Fakultas Ilmu Komputer
     // dan Rekayasa", "Fakultas Ekonomi dan Bisnis"]);
     //    $fakultas = [];
-      $fakultas = ["Fakultas Ilmu Komputer
-    dan Rekayasa", "Fakultas Ekonomi dan Bisnis"];
+    $fakultas = ["Fakultas Ilmu Komputer
+    dan Rekayasa",
+        "Fakultas Ekonomi dan Bisnis"
+    ];
     $kampus = "Universitas Multi Data Palembang";
-    return view('fakultas.index', compact ('fakultas', 'kampus'));
+    return view('fakultas.index', compact('fakultas', 'kampus'));
 });
 
 Route::get('/prodi', [ProdiController::class, 'index']);
@@ -93,14 +95,18 @@ Route::resource('/kurikulum', KurikulumController::class);
 
 Route::apiResource('/dosen', DosenController::class);
 
-Route:: get('/mahasiswa/insert', [MahasiswaController::class, 'insert']);
-Route:: get('/mahasiswa/update', [MahasiswaController::class, 'update']);
-Route:: get('/mahasiswa/delete', [MahasiswaController::class, 'delete']);
-Route:: get('/mahasiswa/select', [MahasiswaController::class, 'select']);
+// Route::get('/mahasiswa/insert', [MahasiswaController::class, 'insert']);
+// Route::get('/mahasiswa/update', [MahasiswaController::class, 'update']);
+// Route::get('/mahasiswa/delete', [MahasiswaController::class, 'delete']);
+// Route::get('/mahasiswa/select', [MahasiswaController::class, 'select']);
 
-Route:: get('/mahasiswa/insert-elq', [MahasiswaController::class, 'insertElq']);
-Route:: get('/mahasiswa/update-elq', [MahasiswaController::class, 'updateElq']);
-Route:: get('/mahasiswa/delete-elq', [MahasiswaController::class, 'deleteElq']);
-Route:: get('/mahasiswa/select-elq', [MahasiswaController::class, 'selectElq']);
+Route::get('/mahasiswa/insert-elq', [MahasiswaController::class, 'insertElq']);
+Route::get('/mahasiswa/update-elq', [MahasiswaController::class, 'updateElq']);
+Route::get('/mahasiswa/delete-elq', [MahasiswaController::class, 'deleteElq']);
+Route::get('/mahasiswa/select-elq', [MahasiswaController::class, 'selectElq']);
 
-Route:: get('/prodi/all-join-facade', [ProdiController::class, 'allJoinFacade']);
+Route::get('/prodi/all-join-facade', [ProdiController::class, 'allJoinFacade']);
+
+Route::get('/prodi/all-join-elq', [ProdiController::class, 'allJoinElq']);
+
+Route::get('/mahasiswa/all-join-elq', [MahasiswaController::class, 'allJoinElq']);
