@@ -17,7 +17,7 @@
                     {{ session()->get('info') }}
                 </div>
                 @endif
-                <form action="{{ url('prodi/store') }}" method="post">
+                <form action="{{ url('prodi/store') }}" method="post" enctype="multipart/form-data" >
                    <!-- <input type="hidden" name="_token" value="Qi5kFmEnEpDcTFgwArzPEP2FW2f6IJK4kXm8e3N"> -->
                    @csrf
                     <div class="form-group">
@@ -28,11 +28,19 @@
                         <div class="text-danger">{{$message}}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="foto">Foto/logo</label>
+                        <input type="file" name="foto" id="foto" class="form-control">
+                        @error('foto')
+                            <div class="text-danger"> {{ $message }} </div>
+                        @enderror
                     <button type="submit" class="btn btn-primary mt-2">Simpan</button>
                 </form>
             </div>
         </div>
     </div>
+        <hr>
+    &copy; {{ date('Y') }} Universitas Multi Data Palembang
 </body>
 </html>
 
